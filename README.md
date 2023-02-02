@@ -6,7 +6,7 @@ allowing playback of DRM-protected content.
 ## Installation
 
 ```sh
-npm install react-native-theoplayer-drm
+npm install https://theoplayer-cdn.s3.eu-west-1.amazonaws.com/react-native-theoplayer/react-native-theoplayer-drm-0.1.0.tgz
 ```
 
 ## Usage
