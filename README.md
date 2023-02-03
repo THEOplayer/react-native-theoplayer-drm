@@ -6,7 +6,7 @@ allowing playback of DRM-protected content.
 ## Installation
 
 ```sh
-npm install https://theoplayer-cdn.s3.eu-west-1.amazonaws.com/react-native-theoplayer/react-native-theoplayer-drm-0.1.0.tgz
+npm i https://theoplayer-cdn.s3.eu-west-1.amazonaws.com/react-native-theoplayer/react-native-theoplayer-drm-0.1.0.tgz
 ```
 
 ## Usage
@@ -15,6 +15,7 @@ The connector needs to be registered to the `ContentProtectionRegistry`, providi
 `integrationId` and `keySystemId`:
 
 ```typescript
+import { ContentProtectionRegistry } from 'react-native-theoplayer';
 import { AnvatoDrmFairplayContentProtectionIntegrationFactory } from 'react-native-theoplayer-drm';
 
 ContentProtectionRegistry.registerContentProtectionIntegration(
