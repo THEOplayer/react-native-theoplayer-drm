@@ -1,16 +1,16 @@
 import {
   AnvatoDrmFairplayContentProtectionIntegrationFactory,
 } from './anvato/AnvatoDrmFairplayContentProtectionIntegrationFactory';
-import type {
+import {
   EzdrmFairplayContentProtectionIntegrationFactory,
 } from './ezdrm/EzDrmFairplayContentProtectionIntegrationFactory';
-import type {
+import {
   VerimatrixCoreDrmFairplayContentProtectionIntegrationFactory,
 } from './verimatrixcoredrm/VerimatrixCoreDrmFairplayContentProtectionIntegrationFactory';
-import type {
+import {
   VerimatrixCoreDrmPlayReadyContentProtectionIntegrationFactory,
 } from './verimatrixcoredrm/VerimatrixCoreDrmPlayReadyContentProtectionIntegrationFactory';
-import type { VerimatrixCoreDrmWidevineContentProtectionIntegrationFactory } from './verimatrixcoredrm/VerimatrixCoreDrmWidevineContentProtectionIntegrationFactory';
+import { VerimatrixCoreDrmWidevineContentProtectionIntegrationFactory } from './verimatrixcoredrm/VerimatrixCoreDrmWidevineContentProtectionIntegrationFactory';
 
 export {
   AnvatoDrmFairplayContentProtectionIntegrationFactory,
