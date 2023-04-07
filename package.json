@@ -1,6 +1,6 @@
 {
   "name": "@theoplayer/react-native-drm",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "DRM connectors for react-native-theoplayer",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
