@@ -6,7 +6,7 @@ allowing playback of DRM-protected content.
 ## Installation
 
 ```sh
-npm i https://theoplayer-cdn.s3.eu-west-1.amazonaws.com/react-native-theoplayer/react-native-theoplayer-drm-0.1.0.tgz
+npm install @theoplayer/react-native-drm
 ```
 
 ## Usage
@@ -16,25 +16,24 @@ The connector needs to be registered to the `ContentProtectionRegistry`, providi
 
 ```typescript
 import { ContentProtectionRegistry } from 'react-native-theoplayer';
-import { AnvatoDrmFairplayContentProtectionIntegrationFactory } from 'react-native-theoplayer-drm';
+import { EzdrmFairplayContentProtectionIntegrationFactory } from 'react-native-theoplayer-drm';
 
 ContentProtectionRegistry.registerContentProtectionIntegration(
-  'anvato',   // integrationId
+  'ezdrm',   // integrationId
   'fairplay', // keySystemId
-  new AnvatoDrmFairplayContentProtectionIntegrationFactory()
+  new EzdrmFairplayContentProtectionIntegrationFactory()
 );
 ```
 
 The combination of both `integrationId` and `keySystemId` points the player towards the connector
-for a specific source,
-in this case the `anvato` connector for `fairplay`:
+for a specific source, in this case the `ezdrm` connector for `fairplay`:
 
 ```typescript
 const source = {
   "sources": {
     "src": "<source_url>",
     "contentProtection": {
-      "integration": "anvato",
+      "integration": "ezdrm",
       "fairplay": {
         "certificate": "<base64encoded_certificate>",
         "licenseAcquisitionURL": "<license_url>"
