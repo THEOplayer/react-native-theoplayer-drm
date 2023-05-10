@@ -1,6 +1,6 @@
-# react-native-theoplayer-drm
+# React Native THEOplayer DRM
 
-The `react-native-theoplayer-drm` package provides a set of connectors for [react-native-theoplayer](https://github.com/THEOplayer/react-native-theoplayer),
+The `@theoplayer/react-native-drm` package provides a set of connectors for [react-native-theoplayer](https://github.com/THEOplayer/react-native-theoplayer),
 allowing playback of DRM-protected content.
 
 ## Installation
@@ -42,3 +42,22 @@ const source = {
   }
 };
 ```
+
+## Connectors
+
+The [THEOplayer DRM integrations repository](https://github.com/THEOplayer/samples-drm-integration)
+contains a list of integrations for native Web, Android & iOS THEOplayer SDKs.
+
+As the content protection API of `react-native-theoplayer` is very similar to that of
+THEOplayer's native Web SDK, the available Web connectors can mostly be reused as-is.
+These connectors are not available as npm packages however, and sometimes have dependencies on web-specific
+utilities. Because of this, the `@theoplayer/react-native-drm` package provides
+the following connectors, readily available to be used by `react-native-theoplayer`:
+
+| Vendor                       | Widevine    | Playready   | FairPlay |
+|------------------------------|-------------|-------------|----------|
+| EZDRM                        | &check; (*) | &check; (*) | &check;  |
+| Verimatrix MultiDRM Core DRM | &check;     | &check;     | &check;  |
+| Anvato                       | &check;     | &cross;     | &check;  |
+
+(*) No connector is needed for these DRM vendors; it is handled by the player's default DRM flow.
