@@ -3,6 +3,8 @@ import type { CastLabsDrmConfiguration } from './CastLabsDrmConfiguration';
 import { fromObjectToBase64String } from 'react-native-theoplayer';
 
 export class CastLabsPlayReadyContentProtectionIntegration implements ContentProtectionIntegration {
+  static readonly DEFAULT_LICENSE_URL = 'https://lic.drmtoday.com/license-proxy-headerauth/drmtoday/RightsManager.asmx';
+
   private readonly contentProtectionConfiguration: CastLabsDrmConfiguration;
   private customData: string;
 
@@ -17,6 +19,7 @@ export class CastLabsPlayReadyContentProtectionIntegration implements ContentPro
   }
 
   onLicenseRequest(request: LicenseRequest): MaybeAsync<Partial<LicenseRequest> | BufferSource> {
+    request.url = this.contentProtectionConfiguration.playready?.licenseAcquisitionURL ?? CastLabsPlayReadyContentProtectionIntegration.DEFAULT_LICENSE_URL;
     request.headers = {
       ...request.headers,
       'x-dt-custom-data': this.customData!,
