@@ -16,6 +16,10 @@ import {
 import {
   VerimatrixCoreDrmWidevineContentProtectionIntegrationFactory,
 } from './verimatrixcoredrm/VerimatrixCoreDrmWidevineContentProtectionIntegrationFactory';
+import {
+  CastLabsFairplayContentProtectionIntegrationFactory,
+} from './castlabs/CastLabsFairplayContentProtectionIntegrationFactory';
+
 
 export {
   AnvatoDrmFairplayContentProtectionIntegrationFactory,
@@ -24,4 +28,5 @@ export {
   VerimatrixCoreDrmFairplayContentProtectionIntegrationFactory,
   VerimatrixCoreDrmPlayReadyContentProtectionIntegrationFactory,
   VerimatrixCoreDrmWidevineContentProtectionIntegrationFactory,
+  CastLabsFairplayContentProtectionIntegrationFactory,
 };
