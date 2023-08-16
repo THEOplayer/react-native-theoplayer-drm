@@ -3,7 +3,7 @@ import type { CastLabsDrmConfiguration } from './CastLabsDrmConfiguration';
 import { fromObjectToBase64String, fromUint8ArrayToBase64String, fromStringToUint8Array, fromUint8ArrayToString, fromBase64StringToUint8Array } from 'react-native-theoplayer';
 
 export class CastLabsFairplayContentProtectionIntegration implements ContentProtectionIntegration {
-  static readonly DEFAULT_CERTIFICATE_URL = 'https://lic.staging.drmtoday.com/license-server-fairplay/cert/pathehome';
+  static readonly DEFAULT_CERTIFICATE_URL = 'insert default certificate url here';
   static readonly DEFAULT_LICENSE_URL = 'insert default license url here';
 
   private readonly contentProtectionConfiguration: CastLabsDrmConfiguration;

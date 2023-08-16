@@ -19,6 +19,12 @@ import {
 import {
   CastLabsFairplayContentProtectionIntegrationFactory,
 } from './castlabs/CastLabsFairplayContentProtectionIntegrationFactory';
+import {
+  CastLabsPlayReadyContentProtectionIntegrationFactory,
+} from './castlabs/CastLabsPlayReadyContentProtectionIntegrationFactory';
+import {
+  CastLabsWidevineContentProtectionIntegrationFactory,
+} from './castlabs/CastLabsWidevineContentProtectionIntegrationFactory';
 
 
 export {
@@ -29,4 +35,6 @@ export {
   VerimatrixCoreDrmPlayReadyContentProtectionIntegrationFactory,
   VerimatrixCoreDrmWidevineContentProtectionIntegrationFactory,
   CastLabsFairplayContentProtectionIntegrationFactory,
+  CastLabsPlayReadyContentProtectionIntegrationFactory,
+  CastLabsWidevineContentProtectionIntegrationFactory,
 };
