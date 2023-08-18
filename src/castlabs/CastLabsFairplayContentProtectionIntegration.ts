@@ -48,7 +48,6 @@ export class CastLabsFairplayContentProtectionIntegration implements ContentProt
     if ('<ckc>' === license.substr(0, 5) && '</ckc>' === license.substr(-6)) {
       license = license.slice(5, -6);
     }
-    console.log(license);
     return fromBase64StringToUint8Array(license);
   }
 
