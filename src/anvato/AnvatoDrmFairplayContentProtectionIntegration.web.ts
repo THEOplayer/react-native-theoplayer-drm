@@ -50,19 +50,25 @@ export class AnvatoDrmFairplayContentProtectionIntegration implements ContentPro
 
     // Something went wrong, try to get detailed info by parsing the response body.
     if (response.status >= 400) {
-      let result: any = response;
+      let result = '';
       try {
         result = await response.text();
       } catch (e) {
         /* Unable to get text body. */
       }
-      return Promise.reject({
-        message: `Error during license server request`,
-        cause: {
+
+      let errorDetails = '';
+      try {
+        errorDetails = JSON.stringify({
           url,
-          status: response,
+          status: response.status,
           result,
-        },
+        });
+      } catch (e) {
+        /* Unable to stringify body. */
+      }
+      return Promise.reject({
+        message: `Error during license server request: ${errorDetails}`,
       });
     }
     return response.arrayBuffer();
