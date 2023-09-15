@@ -7,6 +7,7 @@ import {
   LicenseResponse,
 } from 'react-native-theoplayer';
 import type { AnvatoDrmConfiguration } from './AnvatoDrmConfiguration';
+import type { AnvatoLicenseRequestError } from './AnvatoLicenseRequestError';
 
 export class AnvatoDrmFairplayContentProtectionIntegration implements ContentProtectionIntegration {
   static readonly DEFAULT_CERTIFICATE_URL = 'insert default certificate url here';
@@ -50,27 +51,30 @@ export class AnvatoDrmFairplayContentProtectionIntegration implements ContentPro
 
     // Something went wrong, try to get detailed info by parsing the response body.
     if (response.status >= 400) {
-      let result = '';
       try {
-        result = await response.text();
-      } catch (e) {
-        /* Unable to get text body. */
-      }
+        const jsonResult: AnvatoLicenseRequestError = await response.json();
+        const error = jsonResult.error;
 
-      let errorDetails = '';
-      try {
-        errorDetails = JSON.stringify({
+        // Extract drmErrorCode from error message
+        const drmErrorCode = extractDrmErrorCode(error.message);
+        return Promise.reject({
+          message: `Error during FairPlay license request (code: ${error.code}, drmErrorCode: ${drmErrorCode})`,
+          errorCode: error.code,
+          errorMessage: error.message,
+          errorStatus: error.status,
           url,
-          status: response.status,
-          result,
         });
       } catch (e) {
-        /* Unable to stringify body. */
+        // Failed to parse result body as json.
+        return Promise.reject({
+          message: 'Error during FairPlay license request',
+          error: await response.text(),
+          url,
+        });
       }
-      return Promise.reject({
-        message: `Error during license server request: ${errorDetails}`,
-      });
     }
+
+    // Otherwise pass valid response
     return response.arrayBuffer();
   }
 
@@ -84,4 +88,10 @@ export class AnvatoDrmFairplayContentProtectionIntegration implements ContentPro
     this.contentId = skdUrl.substring(6, skdUrl.length);
     return this.contentId;
   }
+}
+
+function extractDrmErrorCode(str: string): string {
+  const drmErrorCodePattern = /drmErrorCode: (\d+)/;
+  const match = str.match(drmErrorCodePattern);
+  return match ? match[1] : 'unknown';
 }
