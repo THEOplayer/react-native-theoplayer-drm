@@ -1,4 +1,6 @@
 /**
+ * Result body for Anvato license request errors.
+ *
  * Example:
  *
  * {

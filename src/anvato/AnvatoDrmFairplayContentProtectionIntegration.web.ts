@@ -8,6 +8,7 @@ import {
 } from 'react-native-theoplayer';
 import type { AnvatoDrmConfiguration } from './AnvatoDrmConfiguration';
 import type { AnvatoLicenseRequestError } from './AnvatoLicenseRequestError';
+import { AnvatoError } from './AnvatoError';
 
 export class AnvatoDrmFairplayContentProtectionIntegration implements ContentProtectionIntegration {
   static readonly DEFAULT_CERTIFICATE_URL = 'insert default certificate url here';
@@ -51,27 +52,26 @@ export class AnvatoDrmFairplayContentProtectionIntegration implements ContentPro
 
     // Something went wrong, try to get detailed info by parsing the response body.
     if (response.status >= 400) {
+      let anvatoError: AnvatoError;
+
       try {
         const jsonResult: AnvatoLicenseRequestError = await response.json();
         const error = jsonResult.error;
 
         // Extract drmErrorCode from error message
         const drmErrorCode = extractDrmErrorCode(error.message);
-        return Promise.reject({
-          message: `Error during FairPlay license request (code: ${error.code}, drmErrorCode: ${drmErrorCode})`,
-          errorCode: error.code,
-          errorMessage: error.message,
-          errorStatus: error.status,
+        anvatoError = new AnvatoError(
+          `Error during FairPlay license request (code: ${error.code}, drmErrorCode: ${drmErrorCode})`,
+          error.message,
           url,
-        });
+          error.code,
+          error.status,
+        );
       } catch (e) {
         // Failed to parse result body as json.
-        return Promise.reject({
-          message: 'Error during FairPlay license request',
-          error: await response.text(),
-          url,
-        });
+        anvatoError = new AnvatoError('Error during FairPlay license request', await response.text(), url);
       }
+      throw anvatoError;
     }
 
     // Otherwise pass valid response
