@@ -75,12 +75,17 @@ export class AnvatoDrmFairplayContentProtectionIntegration implements ContentPro
     }
 
     // Otherwise pass valid response
-    return response.arrayBuffer();
+    if (response.body) {
+      const licenseResponse = await readStreamAsArrayBuffer(response.body);
+      const responseObject = fromUint8ArrayToObject(licenseResponse);
+      return fromBase64StringToUint8Array(responseObject.ckc);
+    } else {
+      throw new AnvatoError('Error during FairPlay license request', 'Empty response', url);
+    }
   }
 
   onLicenseResponse?(response: LicenseResponse): MaybeAsync<BufferSource> {
-    const responseObject = fromUint8ArrayToObject(response.body);
-    return fromBase64StringToUint8Array(responseObject.ckc);
+    throw new AnvatoError('Error during FairPlay license request', 'Response already processed', response.url);
   }
 
   extractFairplayContentId(skdUrl: string): string {
@@ -94,4 +99,30 @@ function extractDrmErrorCode(str: string): string {
   const drmErrorCodePattern = /drmErrorCode: (\d+)/;
   const match = str.match(drmErrorCodePattern);
   return match ? match[1] : 'unknown';
+}
+
+async function readStreamAsArrayBuffer(readable: ReadableStream<Uint8Array>): Promise<Uint8Array> {
+  const reader = readable.getReader();
+  const chunks: Uint8Array[] = [];
+  let totalLength = 0;
+
+  async function readNextChunk() {
+    const { done, value } = await reader.read();
+    if (done) return;
+    chunks.push(value);
+    totalLength += value.length;
+
+    // Read the next chunk
+    await readNextChunk();
+  }
+  await readNextChunk();
+
+  // Concatenate all chunks into a single Uint8Array
+  const result = new Uint8Array(totalLength);
+  let offset = 0;
+  for (const chunk of chunks) {
+    result.set(chunk, offset);
+    offset += chunk.length;
+  }
+  return result;
 }
