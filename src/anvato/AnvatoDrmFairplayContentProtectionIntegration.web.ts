@@ -84,7 +84,7 @@ export class AnvatoDrmFairplayContentProtectionIntegration implements ContentPro
     }
   }
 
-  onLicenseResponse?(response: LicenseResponse): MaybeAsync<BufferSource> {
+  onLicenseResponse(response: LicenseResponse): MaybeAsync<BufferSource> {
     throw new AnvatoError('Error during FairPlay license request', 'Response already processed', response.url);
   }
 

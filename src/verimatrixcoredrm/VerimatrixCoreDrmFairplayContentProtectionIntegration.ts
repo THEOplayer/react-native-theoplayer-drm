@@ -28,7 +28,7 @@ export class VerimatrixCoreDrmFairplayContentProtectionIntegration implements Co
     return request;
   }
 
-  onLicenseResponse?(response: LicenseResponse): MaybeAsync<BufferSource> {
+  onLicenseResponse(response: LicenseResponse): MaybeAsync<BufferSource> {
     const responseObject = fromUint8ArrayToObject(response.body);
     return fromBase64StringToUint8Array(responseObject.ckc);
   }
