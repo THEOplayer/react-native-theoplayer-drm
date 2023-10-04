@@ -84,7 +84,7 @@ export class AnvatoDrmFairplayContentProtectionIntegration implements ContentPro
     }
   }
 
-  onLicenseResponse?(response: LicenseResponse): MaybeAsync<BufferSource> {
+  onLicenseResponse(response: LicenseResponse): MaybeAsync<BufferSource> {
     throw new AnvatoError('Error during FairPlay license request', 'Response already processed', response.url);
   }
 
@@ -106,16 +106,12 @@ async function readStreamAsArrayBuffer(readable: ReadableStream<Uint8Array>): Pr
   const chunks: Uint8Array[] = [];
   let totalLength = 0;
 
-  async function readNextChunk() {
+  while (true) {
     const { done, value } = await reader.read();
-    if (done) return;
+    if (done) break;
     chunks.push(value);
     totalLength += value.length;
-
-    // Read the next chunk
-    await readNextChunk();
   }
-  await readNextChunk();
 
   // Concatenate all chunks into a single Uint8Array
   const result = new Uint8Array(totalLength);
