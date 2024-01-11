@@ -25,7 +25,9 @@ import {
 import {
   CastLabsWidevineContentProtectionIntegrationFactory,
 } from './castlabs/CastLabsWidevineContentProtectionIntegrationFactory';
-
+import {
+  PallyConFairplayContentProtectionIntegrationFactory,
+} from './pallycon/PallyConFairplayContentProtectionIntegrationFactory';
 
 export {
   AnvatoDrmFairplayContentProtectionIntegrationFactory,
@@ -37,4 +39,5 @@ export {
   CastLabsFairplayContentProtectionIntegrationFactory,
   CastLabsPlayReadyContentProtectionIntegrationFactory,
   CastLabsWidevineContentProtectionIntegrationFactory,
+  PallyConFairplayContentProtectionIntegrationFactory
 };
