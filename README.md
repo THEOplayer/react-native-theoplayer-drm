@@ -59,5 +59,6 @@ the following connectors, readily available to be used by `react-native-theoplay
 | EZDRM                        | &check; (*) | &check; (*) | &check;  |
 | Verimatrix MultiDRM Core DRM | &check;     | &check;     | &check;  |
 | Anvato                       | &check;     | &cross;     | &check;  |
+| PallyCon                     | &cross;     | &cross;     | &check;  |
 
 (*) No connector is needed for these DRM vendors; it is handled by the player's default DRM flow.
