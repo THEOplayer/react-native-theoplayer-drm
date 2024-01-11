@@ -16,6 +16,16 @@ import {
 import {
   VerimatrixCoreDrmWidevineContentProtectionIntegrationFactory,
 } from './verimatrixcoredrm/VerimatrixCoreDrmWidevineContentProtectionIntegrationFactory';
+import {
+  CastLabsFairplayContentProtectionIntegrationFactory,
+} from './castlabs/CastLabsFairplayContentProtectionIntegrationFactory';
+import {
+  CastLabsPlayReadyContentProtectionIntegrationFactory,
+} from './castlabs/CastLabsPlayReadyContentProtectionIntegrationFactory';
+import {
+  CastLabsWidevineContentProtectionIntegrationFactory,
+} from './castlabs/CastLabsWidevineContentProtectionIntegrationFactory';
+
 
 export {
   AnvatoDrmFairplayContentProtectionIntegrationFactory,
@@ -24,4 +34,7 @@ export {
   VerimatrixCoreDrmFairplayContentProtectionIntegrationFactory,
   VerimatrixCoreDrmPlayReadyContentProtectionIntegrationFactory,
   VerimatrixCoreDrmWidevineContentProtectionIntegrationFactory,
+  CastLabsFairplayContentProtectionIntegrationFactory,
+  CastLabsPlayReadyContentProtectionIntegrationFactory,
+  CastLabsWidevineContentProtectionIntegrationFactory,
 };
