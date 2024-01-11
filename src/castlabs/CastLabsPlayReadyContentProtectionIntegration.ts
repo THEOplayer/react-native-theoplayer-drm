@@ -19,7 +19,8 @@ export class CastLabsPlayReadyContentProtectionIntegration implements ContentPro
   }
 
   onLicenseRequest(request: LicenseRequest): MaybeAsync<Partial<LicenseRequest> | BufferSource> {
-    request.url = this.contentProtectionConfiguration.playready?.licenseAcquisitionURL ?? CastLabsPlayReadyContentProtectionIntegration.DEFAULT_LICENSE_URL;
+    request.url = this.contentProtectionConfiguration.playready?.licenseAcquisitionURL ??
+      CastLabsPlayReadyContentProtectionIntegration.DEFAULT_LICENSE_URL;
     request.headers = {
       ...request.headers,
       'x-dt-custom-data': this.customData!,
