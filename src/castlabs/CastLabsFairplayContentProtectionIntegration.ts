@@ -21,7 +21,8 @@ export class CastLabsFairplayContentProtectionIntegration implements ContentProt
   }
 
   onCertificateRequest(request: CertificateRequest): MaybeAsync<Partial<CertificateRequest> | BufferSource> {
-    request.url = this.contentProtectionConfiguration.fairplay?.certificateURL ?? CastLabsFairplayContentProtectionIntegration.DEFAULT_CERTIFICATE_URL;
+    request.url = this.contentProtectionConfiguration.fairplay?.certificateURL ??
+      CastLabsFairplayContentProtectionIntegration.DEFAULT_CERTIFICATE_URL;
     request.headers = {
       ...request.headers,
     };
