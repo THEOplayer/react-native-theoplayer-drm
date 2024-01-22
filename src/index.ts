@@ -5,6 +5,12 @@ import {
   AnvatoDrmWidevineContentProtectionIntegrationFactory,
 } from './anvato/AnvatoDrmWidevineContentProtectionIntegrationFactory';
 import {
+  AxinomFairplayContentProtectionIntegrationFactory,
+} from './axinom/AxinomFairplayContentProtectionIntegrationFactory';
+import {
+  AxinomWidevineContentProtectionIntegrationFactory,
+} from './axinom/AxinomWidevineContentProtectionIntegrationFactory';
+import {
   EzdrmFairplayContentProtectionIntegrationFactory,
 } from './ezdrm/EzDrmFairplayContentProtectionIntegrationFactory';
 import {
@@ -32,6 +38,8 @@ import {
 export {
   AnvatoDrmFairplayContentProtectionIntegrationFactory,
   AnvatoDrmWidevineContentProtectionIntegrationFactory,
+  AxinomFairplayContentProtectionIntegrationFactory,
+  AxinomWidevineContentProtectionIntegrationFactory,
   EzdrmFairplayContentProtectionIntegrationFactory,
   VerimatrixCoreDrmFairplayContentProtectionIntegrationFactory,
   VerimatrixCoreDrmPlayReadyContentProtectionIntegrationFactory,
