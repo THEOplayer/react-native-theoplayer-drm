@@ -59,6 +59,7 @@ the following connectors, readily available to be used by `react-native-theoplay
 | EZDRM                        | &check; (*) | &check; (*) | &check;  |
 | Verimatrix MultiDRM Core DRM | &check;     | &check;     | &check;  |
 | Anvato                       | &check;     | &cross;     | &check;  |
+| Axinom                       | &check;     | &cross;     | &check;  |
 | CastLabs                     | &check;     | &check;     | &check;  |
 | PallyCon                     | &cross;     | &cross;     | &check;  |
 
