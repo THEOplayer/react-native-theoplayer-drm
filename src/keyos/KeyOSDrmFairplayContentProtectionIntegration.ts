@@ -5,12 +5,13 @@ import {
   BufferSource,
   CertificateRequest,
   LicenseResponse,
+  fromUint8ArrayToString,
   fromUint8ArrayToBase64String,
   fromStringToUint8Array,
   fromBase64StringToUint8Array,
 } from 'react-native-theoplayer';
 import { KeyOSDrmConfiguration } from './KeyOSDrmConfiguration';
-import { isKeyOSDrmDRMConfiguration, extractContentId } from './KeyOSDrmUtils';
+import { isKeyOSDrmDRMConfiguration } from './KeyOSDrmUtils';
 
 export class KeyOSDrmFairplayContentProtectionIntegration implements ContentProtectionIntegration {
   private readonly contentProtectionConfiguration: KeyOSDrmConfiguration;
@@ -50,21 +51,17 @@ export class KeyOSDrmFairplayContentProtectionIntegration implements ContentProt
     return request;
   }
 
-  onLicenseResponse?(response: LicenseResponse): MaybeAsync<BufferSource> {
-    const bodyAsString = fromUint8ArrayToUtf8String(response.body);
-    let keyText = bodyAsString.trim();
-    if (keyText.substr(0, 5) === '<ckc>' && keyText.substr(-6) === '</ckc>') {
-      keyText = keyText.slice(5, -6);
+  onLicenseResponse(response: LicenseResponse): MaybeAsync<BufferSource> {
+    let license = fromUint8ArrayToString(response.body);
+    if ('<ckc>' === license.substr(0, 5) && '</ckc>' === license.substr(-6)) {
+      license = license.slice(5, -6);
     }
-    return fromBase64StringToUint8Array(keyText);
+    return fromBase64StringToUint8Array(license);
   }
 
   extractFairplayContentId(skdUrl: string): string {
-    this.contentId = extractContentId(skdUrl);
+    // drop the 'skd://' part
+    this.contentId = skdUrl.substring(6, skdUrl.length);
     return this.contentId;
   }
-}
-
-function fromUint8ArrayToUtf8String(array: Uint8Array): string {
-  return new TextDecoder('utf-8').decode(array);
 }
