@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@react-native-community/eslint-config": "^3.2.0",
-    "@types/react": "^18.2.74",
+    "@types/react": "^18.2.75",
     "@types/react-native": "^0.73.0",
     "del-cli": "^5.1.0",
     "eslint": "^8.57.0",
@@ -59,37 +59,15 @@
     "pod-install": "^0.1.39",
     "prettier": "^3.2.5",
     "react": "^18.2.0",
-    "react-native": "^0.73.4",
+    "react-native": "^0.73.6",
     "react-native-builder-bob": "^0.23.2",
-    "react-native-theoplayer": "^3.10.3",
-    "typescript": "^5.2.2"
+    "react-native-theoplayer": "^7.0.0",
+    "typescript": "^5.4.5"
   },
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
-    "react-native-theoplayer": "*"
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "release-it": {
-    "git": {
-      "commitMessage": "chore: release ${version}",
-      "tagName": "v${version}"
-    },
-    "npm": {
-      "publish": true
-    },
-    "github": {
-      "release": true
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": "angular"
-      }
-    }
+    "react-native-theoplayer": "^5.0.0 || ^6.0.0 || ^7.0.0"
   },
   "eslintIgnore": [
     "node_modules/",
