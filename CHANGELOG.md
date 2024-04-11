@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - Added BuyDRM KeyOS connector for fairplay, widevine and playready.
+- Added support for `react-native-theoplayer` v7.0.0.
 
 ## [1.4.0] - 2024-01-23
 
