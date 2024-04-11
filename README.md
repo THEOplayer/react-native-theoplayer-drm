@@ -56,6 +56,7 @@ the following connectors, readily available to be used by `react-native-theoplay
 
 | Vendor                       | Widevine    | Playready   | FairPlay |
 |------------------------------|-------------|-------------|----------|
+| BuyDRM KeyOS                 | &check;     | &check;     | &check;  |
 | EZDRM                        | &check; (*) | &check; (*) | &check;  |
 | Verimatrix MultiDRM Core DRM | &check;     | &check;     | &check;  |
 | Anvato                       | &check;     | &cross;     | &check;  |
