@@ -19,7 +19,7 @@ export class KeyOSDrmFairplayContentProtectionIntegration implements ContentProt
 
   constructor(configuration: KeyOSDrmConfiguration) {
     if (!isKeyOSDrmDRMConfiguration(configuration)) {
-      throw new Error('The KeyOS customdata value has not been correctly configured.');
+      throw new Error('Invalid KeyOSDrmConfiguration.');
     }
     this.contentProtectionConfiguration = configuration;
   }

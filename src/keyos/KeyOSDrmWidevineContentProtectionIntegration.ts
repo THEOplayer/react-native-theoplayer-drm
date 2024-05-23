@@ -7,7 +7,7 @@ export class KeyOSDrmWidevineContentProtectionIntegration implements ContentProt
 
   constructor(configuration: KeyOSDrmConfiguration) {
     if (!isKeyOSDrmDRMConfiguration(configuration)) {
-      throw new Error('The KeyOS token has not been correctly configured.');
+      throw new Error('Invalid KeyOSDrmConfiguration.');
     }
     this.contentProtectionConfiguration = configuration;
   }
