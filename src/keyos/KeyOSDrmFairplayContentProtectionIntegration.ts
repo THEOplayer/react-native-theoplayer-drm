@@ -19,7 +19,7 @@ export class KeyOSDrmFairplayContentProtectionIntegration implements ContentProt
 
   constructor(configuration: KeyOSDrmConfiguration) {
     if (!isKeyOSDrmDRMConfiguration(configuration)) {
-      throw new Error('The KeyOS customdata value has not been correctly configured.');
+      throw new Error('Invalid KeyOSDrmConfiguration.');
     }
     this.contentProtectionConfiguration = configuration;
   }
@@ -29,10 +29,14 @@ export class KeyOSDrmFairplayContentProtectionIntegration implements ContentProt
       throw new Error('The KeyOS certificate url has not been correctly configured.');
     }
     request.url = this.contentProtectionConfiguration.fairplay?.certificateURL;
-    request.headers = {
-      ...request.headers,
-      'x-keyos-authorization': this.contentProtectionConfiguration.integrationParameters['x-keyos-authorization'],
-    };
+    const authorization = this.contentProtectionConfiguration.integrationParameters?.['x-keyos-authorization'];
+    if (authorization !== undefined) {
+      request.headers = {
+        ...request.headers,
+        'x-keyos-authorization': authorization,
+      };
+    }
+
     return request;
   }
 
@@ -42,10 +46,12 @@ export class KeyOSDrmFairplayContentProtectionIntegration implements ContentProt
     }
 
     request.url = this.contentProtectionConfiguration.fairplay?.licenseAcquisitionURL;
-    request.headers = {
-      ...request.headers,
-      'x-keyos-authorization': this.contentProtectionConfiguration.integrationParameters['x-keyos-authorization'],
-    };
+    if (this.contentProtectionConfiguration.integrationParameters !== undefined) {
+      request.headers = {
+        ...request.headers,
+        'x-keyos-authorization': this.contentProtectionConfiguration.integrationParameters['x-keyos-authorization'],
+      };
+    }
     const licenseParameters = `spc=${fromUint8ArrayToBase64String(request.body!)}&assetId=${this.contentId}`;
     request.body = fromStringToUint8Array(licenseParameters);
     return request;

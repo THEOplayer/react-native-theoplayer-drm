@@ -7,7 +7,7 @@ export class KeyOSDrmPlayReadyContentProtectionIntegration implements ContentPro
 
   constructor(configuration: KeyOSDrmConfiguration) {
     if (!isKeyOSDrmDRMConfiguration(configuration)) {
-      throw new Error('The KeyOS customdata value has not been correctly configured.');
+      throw new Error('Invalid KeyOSDrmConfiguration.');
     }
     this.contentProtectionConfiguration = configuration;
   }
@@ -17,10 +17,13 @@ export class KeyOSDrmPlayReadyContentProtectionIntegration implements ContentPro
       throw new Error('The PlayReady KeyOS license url has not been correctly configured.');
     }
     request.url = this.contentProtectionConfiguration.playready?.licenseAcquisitionURL;
-    request.headers = {
-      ...request.headers,
-      'x-keyos-authorization': this.contentProtectionConfiguration.integrationParameters['x-keyos-authorization'],
-    };
+    const authorization = this.contentProtectionConfiguration.integrationParameters?.['x-keyos-authorization'];
+    if (authorization !== undefined) {
+      request.headers = {
+        ...request.headers,
+        'x-keyos-authorization': authorization,
+      };
+    }
     return request;
   }
 }

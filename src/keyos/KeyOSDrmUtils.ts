@@ -1,5 +1,5 @@
 import { KeyOSDrmConfiguration } from './KeyOSDrmConfiguration';
 
 export function isKeyOSDrmDRMConfiguration(configuration: KeyOSDrmConfiguration): boolean {
-  return configuration.integrationParameters['x-keyos-authorization'] !== undefined;
+  return configuration.integration === 'keyos_buydrm';
 }
