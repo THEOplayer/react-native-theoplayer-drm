@@ -18,7 +18,7 @@ export interface KeyOSDrmConfiguration extends DRMConfiguration {
    * An object of key/value pairs which can be used to pass in specific parameters related to a source into a
    * ContentProtectionIntegration.
    */
-  integrationParameters: {
+  integrationParameters?: {
     /**
      * The KeyOS BuyDRM Authorization Token.
      *
