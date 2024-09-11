@@ -13,13 +13,15 @@ export class CastLabsWidevineContentProtectionIntegration implements ContentProt
     const customDataObject = {
       userId: this.contentProtectionConfiguration.integrationParameters.userId,
       sessionId: this.contentProtectionConfiguration.integrationParameters.sessionId,
-      merchant: this.contentProtectionConfiguration.integrationParameters.merchant
+      merchant: this.contentProtectionConfiguration.integrationParameters.merchant,
     };
     this.customData = fromObjectToBase64String(customDataObject);
   }
 
   onLicenseRequest(request: LicenseRequest): MaybeAsync<Partial<LicenseRequest> | BufferSource> {
-    request.url = (this.contentProtectionConfiguration.widevine?.licenseAcquisitionURL ?? CastLabsWidevineContentProtectionIntegration.DEFAULT_LICENSE_URL).replace("?specConform=true","");
+    request.url = (
+      this.contentProtectionConfiguration.widevine?.licenseAcquisitionURL ?? CastLabsWidevineContentProtectionIntegration.DEFAULT_LICENSE_URL
+    ).replace('?specConform=true', '');
     request.headers = {
       ...request.headers,
       'x-dt-custom-data': this.customData!,

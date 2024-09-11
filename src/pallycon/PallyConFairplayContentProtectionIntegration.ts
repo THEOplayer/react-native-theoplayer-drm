@@ -1,6 +1,6 @@
 import type { ContentProtectionIntegration, LicenseRequest, LicenseResponse, MaybeAsync } from 'react-native-theoplayer';
 import type { PallyConDrmConfiguration } from './PallyConConfiguration';
-import { fromBase64StringToUint8Array, fromStringToUint8Array, fromUint8ArrayToBase64String, fromUint8ArrayToString } from "react-native-theoplayer";
+import { fromBase64StringToUint8Array, fromStringToUint8Array, fromUint8ArrayToBase64String, fromUint8ArrayToString } from 'react-native-theoplayer';
 
 export class PallyConFairplayContentProtectionIntegration implements ContentProtectionIntegration {
   static readonly DEFAULT_LICENSE_URL = 'https://license-global.pallycon.com/ri/licenseManager.do';
@@ -19,7 +19,7 @@ export class PallyConFairplayContentProtectionIntegration implements ContentProt
     request.url = this.contentProtectionConfiguration.fairplay?.licenseAcquisitionURL;
     request.headers = {
       ...request.headers,
-      ...this.contentProtectionConfiguration.fairplay?.headers
+      ...this.contentProtectionConfiguration.fairplay?.headers,
     };
     if (!this.contentId) {
       throw new Error('The FairPlay PallyCon content ID has not been correctly configured.');

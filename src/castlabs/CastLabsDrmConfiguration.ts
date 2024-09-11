@@ -27,4 +27,3 @@ export interface CastLabsDrmConfiguration extends DRMConfiguration {
 
   integrationParameters: CastLabsIntegrationParameters;
 }
-
