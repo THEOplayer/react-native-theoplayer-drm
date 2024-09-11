@@ -33,7 +33,7 @@
     "prettier:fix": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "lint:fix": "npm run lint -- --fix",
-    "prepare": "husky"
+    "prepare": "bob build && husky"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
