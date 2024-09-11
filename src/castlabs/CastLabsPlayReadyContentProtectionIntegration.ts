@@ -13,14 +13,14 @@ export class CastLabsPlayReadyContentProtectionIntegration implements ContentPro
     const customDataObject = {
       userId: this.contentProtectionConfiguration.integrationParameters.userId,
       sessionId: this.contentProtectionConfiguration.integrationParameters.sessionId,
-      merchant: this.contentProtectionConfiguration.integrationParameters.merchant
+      merchant: this.contentProtectionConfiguration.integrationParameters.merchant,
     };
     this.customData = fromObjectToBase64String(customDataObject);
   }
 
   onLicenseRequest(request: LicenseRequest): MaybeAsync<Partial<LicenseRequest> | BufferSource> {
-    request.url = this.contentProtectionConfiguration.playready?.licenseAcquisitionURL ??
-      CastLabsPlayReadyContentProtectionIntegration.DEFAULT_LICENSE_URL;
+    request.url =
+      this.contentProtectionConfiguration.playready?.licenseAcquisitionURL ?? CastLabsPlayReadyContentProtectionIntegration.DEFAULT_LICENSE_URL;
     request.headers = {
       ...request.headers,
       'x-dt-custom-data': this.customData!,

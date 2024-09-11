@@ -1,6 +1,12 @@
 import type { CertificateRequest, ContentProtectionIntegration, LicenseRequest, LicenseResponse, MaybeAsync } from 'react-native-theoplayer';
 import type { CastLabsDrmConfiguration } from './CastLabsDrmConfiguration';
-import { fromObjectToBase64String, fromUint8ArrayToBase64String, fromStringToUint8Array, fromUint8ArrayToString, fromBase64StringToUint8Array } from 'react-native-theoplayer';
+import {
+  fromObjectToBase64String,
+  fromUint8ArrayToBase64String,
+  fromStringToUint8Array,
+  fromUint8ArrayToString,
+  fromBase64StringToUint8Array,
+} from 'react-native-theoplayer';
 
 export class CastLabsFairplayContentProtectionIntegration implements ContentProtectionIntegration {
   static readonly DEFAULT_CERTIFICATE_URL = 'https://lic.drmtoday.com/license-server-fairplay/cert/';
@@ -15,14 +21,14 @@ export class CastLabsFairplayContentProtectionIntegration implements ContentProt
     const customDataObject = {
       userId: this.contentProtectionConfiguration.integrationParameters.userId,
       sessionId: this.contentProtectionConfiguration.integrationParameters.sessionId,
-      merchant: this.contentProtectionConfiguration.integrationParameters.merchant
+      merchant: this.contentProtectionConfiguration.integrationParameters.merchant,
     };
     this.customData = fromObjectToBase64String(customDataObject);
   }
 
   onCertificateRequest(request: CertificateRequest): MaybeAsync<Partial<CertificateRequest> | BufferSource> {
-    request.url = this.contentProtectionConfiguration.fairplay?.certificateURL ??
-      CastLabsFairplayContentProtectionIntegration.DEFAULT_CERTIFICATE_URL;
+    request.url =
+      this.contentProtectionConfiguration.fairplay?.certificateURL ?? CastLabsFairplayContentProtectionIntegration.DEFAULT_CERTIFICATE_URL;
     request.headers = {
       ...request.headers,
     };
@@ -53,7 +59,7 @@ export class CastLabsFairplayContentProtectionIntegration implements ContentProt
   }
 
   extractFairplayContentId(skdUrl: string): string {
-    this.contentId = skdUrl
+    this.contentId = skdUrl;
     return this.contentId;
   }
 }

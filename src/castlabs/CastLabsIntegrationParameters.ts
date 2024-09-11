@@ -25,5 +25,4 @@ export interface CastLabsIntegrationParameters {
    *
    */
   userId?: string;
-
 }

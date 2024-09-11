@@ -1,8 +1,4 @@
-import type {
-  ContentProtectionIntegration,
-  LicenseRequest,
-  MaybeAsync,
-} from 'react-native-theoplayer';
+import type { ContentProtectionIntegration, LicenseRequest, MaybeAsync } from 'react-native-theoplayer';
 import {
   fromBase64StringToUint8Array,
   fromObjectToUint8Array,
