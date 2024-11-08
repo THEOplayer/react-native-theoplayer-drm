@@ -13,3 +13,4 @@ export * from './pallycon/PallyConFairplayContentProtectionIntegrationFactory';
 export * from './keyos/KeyOSDrmFairplayContentProtectionIntegrationFactory';
 export * from './keyos/KeyOSDrmWidevineContentProtectionIntegrationFactory';
 export * from './keyos/KeyOSDrmPlayReadyContentProtectionIntegrationFactory';
+export { sdkVersions } from './version/Version';
