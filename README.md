@@ -1,5 +1,8 @@
 # React Native THEOplayer DRM
 
+> [!CAUTION]
+> This connector repository was moved to [THEOplayer/react-native-connectors](https://github.com/THEOplayer/react-native-connectors).
+
 The `@theoplayer/react-native-drm` package provides a set of connectors for [react-native-theoplayer](https://github.com/THEOplayer/react-native-theoplayer),
 allowing playback of DRM-protected content.
 
